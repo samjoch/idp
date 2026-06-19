@@ -1,7 +1,7 @@
 #!/bin/sh
 # Installer for `idp` — the mock OIDC provider.
 #
-#   curl -fsSL https://raw.githubusercontent.com/OWNER/idp/main/install.sh | sh
+#   curl -fsSL https://raw.githubusercontent.com/samjoch/idp/main/install.sh | sh
 #
 # Downloads a prebuilt binary for your platform from GitHub Releases, and
 # falls back to building from source with cargo if none is available.
@@ -10,7 +10,7 @@
 #   curl -fsSL .../install.sh | IDP_REPO=me/idp IDP_INSTALL_DIR=/usr/local/bin sh
 set -eu
 
-REPO="${IDP_REPO:-OWNER/idp}"
+REPO="${IDP_REPO:-samjoch/idp}"
 BIN="idp"
 INSTALL_DIR="${IDP_INSTALL_DIR:-$HOME/.local/bin}"
 

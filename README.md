@@ -11,7 +11,7 @@ real OIDC client at it.
 ## Install
 
 ```sh
-curl -fsSL https://raw.githubusercontent.com/OWNER/idp/main/install.sh | sh
+curl -fsSL https://raw.githubusercontent.com/samjoch/idp/main/install.sh | sh
 ```
 
 The script downloads a prebuilt binary for your platform from GitHub Releases,
@@ -22,13 +22,13 @@ repo or destination:
 curl -fsSL .../install.sh | IDP_REPO=me/idp IDP_INSTALL_DIR=/usr/local/bin sh
 ```
 
-> Replace `OWNER` with your GitHub repo. Prebuilt binaries are produced by
-> `.github/workflows/release.yml` when you push a `v*` tag.
+> Prebuilt binaries are produced by `.github/workflows/release.yml` when you
+> push a `v*` tag.
 
 If you have Rust and don't want the script, install directly from the repo:
 
 ```sh
-cargo install --git https://github.com/OWNER/idp idp
+cargo install --git https://github.com/samjoch/idp idp
 ```
 
 ## Build (from a local checkout)
