@@ -8,7 +8,30 @@ real OIDC client at it.
 > the password entirely, and the RSA key lives in a JSON file. Never use this
 > with real credentials or expose it to a network.
 
-## Build
+## Install
+
+```sh
+curl -fsSL https://raw.githubusercontent.com/OWNER/idp/main/install.sh | sh
+```
+
+The script downloads a prebuilt binary for your platform from GitHub Releases,
+or builds from source with `cargo` if none is available. Override the source
+repo or destination:
+
+```sh
+curl -fsSL .../install.sh | IDP_REPO=me/idp IDP_INSTALL_DIR=/usr/local/bin sh
+```
+
+> Replace `OWNER` with your GitHub repo. Prebuilt binaries are produced by
+> `.github/workflows/release.yml` when you push a `v*` tag.
+
+If you have Rust and don't want the script, install directly from the repo:
+
+```sh
+cargo install --git https://github.com/OWNER/idp idp
+```
+
+## Build (from a local checkout)
 
 ```sh
 cargo build --release

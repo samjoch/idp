@@ -1,0 +1,37 @@
+name: release
+
+# Tag a version to trigger a release:  git tag v0.1.0 && git push --tags
+on:
+  push:
+    tags: ['v*']
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    name: ${{ matrix.target }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: macos-14
+            target: aarch64-apple-darwin
+          - os: macos-13
+            target: x86_64-apple-darwin
+          - os: ubuntu-latest
+            target: x86_64-unknown-linux-gnu
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+        with:
+          targets: ${{ matrix.target }}
+      - name: Build
+        run: cargo build --release --target ${{ matrix.target }}
+      - name: Package
+        run: tar -C target/${{ matrix.target }}/release -czf idp-${{ matrix.target }}.tar.gz idp
+      - name: Upload to release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: idp-${{ matrix.target }}.tar.gz
